@@ -178,7 +178,7 @@ module.exports = function(grunt) {
           defaultWidth: '20px',
           defaultHeight: '20px',
           colors: {
-            'dark' : '#444'
+            'custom' : '#333'
           }
         }
       }
