@@ -1,1 +1,129 @@
-.content-info{}
+.content-info{
+
+    overflow: hidden;
+    color: #fff;
+    font-family: "Quicksand-Bold";
+    font-size: 12px;
+    line-height: 20px;
+    .gradient (@startColor: #0D280B, @endColor: #091506);
+
+    @media (min-width: @screen-md-min){
+        height: @footer-height;
+    }
+
+    .widget-columns{
+        margin: 0 0 30px;
+
+        @media (min-width: @screen-md-min){
+            display: table;
+            width: 100%;
+        }
+
+        .widget{
+            border: 0px solid #485846;
+            padding: 20px 15px;
+            overflow: hidden;
+
+            @media (min-width: @screen-md-min){
+                display: table-cell;
+                vertical-align: top;
+                min-width: 280px;
+
+                &:nth-child(1){
+                    width: 50%;
+                }
+                &:nth-child(2){
+                    width: 25%;
+                }
+                &:nth-child(3){
+                    width: 25%;
+                }
+            }
+
+            &+.widget{
+                border-width: 2px 0 0;
+
+                @media (min-width: @screen-md-min){
+                    border-width: 0 0 0 2px;
+                }
+            }
+
+            ul:not(.dropdown-menu){
+                list-style: none;
+                padding: 0;
+
+                >li{
+                    &+li{
+                        margin-top: 11px;
+                    }
+                }
+            }
+
+            a{
+                color: #fff;
+
+                &:hover,
+                &:focus{
+                    color: @brand-primary;
+                }
+            }
+
+            h3{
+                margin: 11px 0;
+                font-family: "ShadowsIntoLight";
+                font-size: 21px;
+                color: @brand-primary;
+            }
+
+            .menu{
+                text-transform: uppercase;
+                columns: 2 auto;
+
+                .dropdown-menu{
+                    >li{
+                        &.active >a{
+                            color: #fff;
+
+                            &:hover,
+                            &:focus{
+                                color: #fff;
+                                background-color: @brand-primary;
+                            }
+                        }
+                        >a{
+                            color: @gray-dark;
+                            &:hover,
+                            &:focus{
+                                color: @brand-primary;
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .textwidget{
+                p{
+                    margin-bottom: 0;
+
+                    &+p{
+                        margin-top: 11px;
+                    }
+                }
+
+                iframe{
+                    max-width: 100%;
+                }
+                img{
+                    margin-top: 22px;
+
+                    @media (max-width: @screen-xs-max) {
+                        display: block;
+                        margin: 0 auto;
+                    }
+                }
+            }
+
+        }
+    }
+}

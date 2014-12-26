@@ -1,8 +1,10 @@
 //
 // Variables
 // --------------------------------------------------
-//#269bbb
-//#231f20
+
+@header-height: 145px;
+@footer-height: 245px;
+@layout-offset: 40px;
 
 //== Colors
 //
@@ -14,7 +16,7 @@
 @gray-light:             lighten(#000, 46.7%); // #777
 @gray-lighter:           lighten(#000, 66.8%); // #aaa
 
-@brand-primary:         #9cd3d0;
+@brand-primary:         #FF7F06;
 @brand-success:         #5cb85c;
 @brand-info:            #5bc0de;
 @brand-warning:         #f0ad4e;
@@ -28,7 +30,7 @@
 //** Background color for `<body>`.
 @body-bg:               #fff;
 //** Global text color on `<body>`.
-@text-color:            @gray-light;
+@text-color:            #000;
 
 //** Global textual link color.
 @link-color:            @brand-primary;
@@ -46,7 +48,7 @@
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
 
-@font-size-base:          16px;
+@font-size-base:          15px;
 @font-size-large:         ceil((@font-size-base * 1.25));
 @font-size-small:         ceil((@font-size-base * 0.85));
 
@@ -341,7 +343,7 @@
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
-@navbar-collapse-max-height:       340px;
+@navbar-collapse-max-height:       350px;
 
 @navbar-default-color:             #777;
 @navbar-default-bg:                #f8f8f8;
@@ -816,7 +818,7 @@
 @pre-bg:                      #f5f5f5;
 @pre-color:                   @gray-dark;
 @pre-border-color:            #ccc;
-@pre-scrollable-max-height:   340px;
+@pre-scrollable-max-height:   350px;
 
 
 //== Type

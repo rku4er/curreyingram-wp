@@ -1,1 +1,36 @@
-.sidebar{}
+.sidebar{
+    padding-bottom: @layout-offset;
+
+    .widget{
+        overflow: hidden;
+
+        &.well{
+            margin-bottom: 0;
+        }
+
+        &+.widget{
+            margin-top: 10px;
+        }
+
+        >h3{
+            margin: 11px 0;
+            font-family: "ShadowsIntoLight";
+            font-size: 21px;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0;
+        }
+
+        .search-form{
+            margin: 11px -15px;
+
+            .form-control{
+                width: 100%;
+            }
+        }
+
+    }
+
+}

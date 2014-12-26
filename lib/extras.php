@@ -86,155 +86,53 @@ function my_post_queries( $query ) {
 add_shortcode('copyright', 'copyright_func');
 
 function copyright_func($atts, $content = null) {
-    $atts = shortcode_atts(array(), $atts);
+    extract( shortcode_atts( array(), $attr ) );
 
-    $output = '';
-
-    $copyright = function_exists('get_field') ? get_field('copyright', 'options') : '';
-
-    if($copyright){
-      $output .= 'Copyright &copy; ' . date('Y') . ' ' . $copyright;
-    }
+    $output = 'Copyright &copy; ' . date('Y') . ' ' . get_bloginfo('name') . '. All Rights Reserved Site by <a href="http://rippkedesign.com" target="_blank">Rippke Design</a>';
 
     return $output;
 }
 
 
 /**
- * Slider shortcode
+ * Promo Tiles Shortcode
  */
-add_shortcode('slider', 'slider_func');
+add_shortcode('promo_tiles', 'promo_tiles_func');
 
-function slider_func($atts, $content = null) {
-  $atts = shortcode_atts(array(
-    'timeout' => '0'
-  ), $atts);
+function promo_tiles_func($atts, $content = null){
+  extract( shortcode_atts( array(), $attr ) );
 
   $output = '';
 
-  $slider = function_exists('get_field') ? get_field('slider') : '';
+  if(function_exists('get_field')){
 
-  if($slider){
+    $size = 'promo';
 
-    $output .= '<section id="home-slider" class="carousel slide carousel-fade" data-ride="carousel" data-interval="'. $atts['timeout'] .'">';
+    $promo_left_id = get_field('promo_left_image', 'options') ? get_field('promo_left_image', 'options') : '';
+    $promo_left_img = wp_get_attachment_image_src($promo_left_id, $size, false);
+    $promo_left_url = get_field('promo_left_url', 'options') ? get_field('promo_left_url', 'options') : '';
 
-    $output .= '<div class="carousel-inner">';
+    $promo_right_id = get_field('promo_right_image', 'options') ? get_field('promo_right_image', 'options') : '';
+    $promo_right_img = wp_get_attachment_image_src($promo_right_id, $size, false);
+    $promo_right_url = get_field('promo_right_url', 'options') ? get_field('promo_right_url', 'options') : '';
 
-    $i = 0;
+    $output .= '<div class="tiles">';
 
-    while(have_rows('slider')){
-
-        the_row();
-        $i++;
-        $active = ($i == 1) ? 'active' : '';
-        $img_src = wp_get_attachment_image_src(get_sub_field('image'), 'home-slider', false);
-        $target = get_sub_field('new_window') ? 'target="_blank"' : '';
-        $image = '<img src="'. $img_src[0] .'" alt="">';
-        $url = get_sub_field('url');
-        $title = '<h2 class="title">' . get_sub_field('title') . '</h2>';
-        $caption = '<p class="caption">'. get_sub_field('caption') .'</p>';
-
-        $output .= '<div class="item '. $active .'">'; // item begin
-        $output .= $url ? '<a href="'. $url .'" '. $target .'>' . $image . '</a>' : $image;
-        $output .= '<div class="bar">';
-        $output .= $title;
-        $output .= $caption;
-        $output .= '<a href="'. $url .'" '. $target .' class="more"><span class="like-table"><span class="like-table-cell">' . __('Read More', 'roots') . '</span></span></a>';
-        $output .= '</div>';
-        $output .= '</div>'; // item end
-    }
-
+    $output .= '<div class="tile visible-lg-block">';
+    $output .= '<div class="inner">';
+    $output .= '<a href="' . 'promo_left_url' . '" target="_blank"><img src="' . $promo_left_img[0] . '" alt=""></a>';
+    $output .= '</div>';
     $output .= '</div>';
 
-    $output .= '</section>';
+    $output .= '<div class="tile visible-lg-block">';
+    $output .= '<div class="inner">';
+    $output .= '<a href="' . 'promo_right_url' . '" target="_blank"><img src="' . $promo_right_img[0] . '" alt=""></a>';
+    $output .= '</div>';
+    $output .= '</div>';
 
+    $output .= '</div>';
   }
 
   return $output;
-}
 
-
-/**
- * About images shortcode
- */
-add_shortcode('images', 'row_images_func');
-
-function row_images_func($atts, $content = null) {
-  $atts = shortcode_atts(array(
-    'items_in_row' => '4'
-  ), $atts);
-
-  $num = 12 / $atts['items_in_row'];
-
-  $output = '';
-
-  $row_images = function_exists('get_field') ? get_field('row_images') : '';
-
-  if($row_images){
-
-    $output .= '<section id="row_images" class="demos">';
-
-    $i = 0;
-
-    while(have_rows('row_images')){
-
-        the_row();
-        $i++;
-        $full_src = wp_get_attachment_image_src(get_sub_field('image'), 'full', false);
-        $thumb_src = wp_get_attachment_image_src(get_sub_field('image'), 'demos', false);
-        $lightbox = get_sub_field('lightbox') ? 'rel="lightbox[row_images]"' : '';
-        $href = $full_src[0];
-
-        if($i == 1 || ($i-1)%$atts['items_in_row'] == 0){
-          $output .= '<div class="row">';
-        }
-
-        $output .= '<div class="col-sm-'. $num .'">';
-        $output .= '<h3 style="background-image: url('. $thumb_src[0] .')"><a href="'. $href .'"'. $lightbox .'><img src="'. $thumb_src[0] .'" alt=""></a></h3>';
-        $output .= '</div>';
-
-        if($i == count(get_field('row_images')) || $i%$atts['items_in_row'] == 0){
-          $output .= '</div>';
-        }
-    }
-
-    $output .= '</section>';
-
-  }
-
-  return $output;
-}
-
-
-/**
- * Helpful layout shortcodes
- */
-add_shortcode('container_open', 'container_open_func');
-function container_open_func($atts, $content = null) {
-  return '<div class="container">';
-}
-
-add_shortcode('container_close', 'container_close_func');
-function container_close_func($atts, $content = null) {
-  return '</div>';
-}
-
-add_shortcode('row_open', 'row_open_func');
-function row_open_func($atts, $content = null) {
-  return '<div class="row">';
-}
-
-add_shortcode('row_close', 'row_close_func');
-function row_close_func($atts, $content = null) {
-  return '</div>';
-}
-
-add_shortcode('column_open', 'column_open_func');
-function column_open_func($atts, $content = null) {
-  return '<div class="col-md-6">';
-}
-
-add_shortcode('column_close', 'column_close_func');
-function column_close_func($atts, $content = null) {
-  return '</div>';
 }

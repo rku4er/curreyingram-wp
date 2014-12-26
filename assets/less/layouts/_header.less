@@ -1,0 +1,236 @@
+.navbar{
+    border: 0 none;
+    margin: 0;
+
+    > .container{
+        position: relative;
+
+        @media (min-width: @screen-sm-min){
+            height: @header-height;
+        }
+    }
+
+    &.navbar-default{
+        .gradient (@startColor: #549d9c, @endColor: #7fc9c4);
+
+        .navbar-brand{
+            padding: 14.5px 0 14.5px 55px;
+            color: #fff;
+
+            @media (min-width: @screen-sm-min){
+                display: none;
+            }
+        }
+
+        .navbar-toggle{
+
+            &:hover,
+            &:focus{
+                .icon-bar{
+                    background-color: @gray-dark;
+                }
+            }
+            .icon-bar{
+                background-color: #fff;
+            }
+        }
+
+        .navbar-nav{
+            @media (min-width: @screen-sm-min){
+                position: absolute;
+                bottom: 10px;
+                left: 170px;
+                right: 110px;
+            }
+
+            > li{
+
+                a{
+                    font-family: "Quicksand-Bold";
+                    font-size: 17px;
+                }
+
+                >a{
+                    color: #fff;
+                    text-transform: uppercase;
+
+                    @media (min-width: @screen-sm-min){
+                        display: inline-block;
+                        padding: 2px 10px;
+                        margin-top: 10px;
+                    }
+
+                    &:hover,
+                    &:focus{
+                        background-color: transparent;
+                        color: @gray-dark;
+                    }
+                }
+
+                &.active >a{
+                    background-color: #FFF;
+                    color: @gray-dark;
+                }
+
+                &.register{
+                    @media (min-width: @screen-sm-min){
+                        position: absolute;
+                        left: 100%;
+                        bottom: -20px;
+
+                        &:before,
+                        &:after{
+                            content: "";
+                            background-color: #0E280C;
+                            width: 50%;
+                            height: 2.5em;
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            z-index: 1;
+                            transition: all .2s ease-out;
+                        }
+
+                        &:before{
+                            left: 0;
+                            transform: matrix(1, 0.25, 0, 1, 0, 0);
+                        }
+                        &:after{
+                            right: 0;
+                            transform: matrix(1, -0.25, 0, 1, 0, 0);
+                        }
+
+                        &:hover:before,
+                        &:hover:after{
+                            transform: matrix(1, 0, 0, 1, 0, 0);
+                        }
+
+                        >a{
+                            background-color: @brand-primary;
+                            font-size: 24px;
+                            color: #0D270B;
+                            font-family: "Lobster";
+                            text-transform: none;
+                            padding: 35px 15px 15px;
+
+                            &:active{
+                                transform: none;
+                            }
+
+                            &:before{
+                                content: "";
+                                position: absolute;
+                                right: 100%;
+                                bottom: 0;
+                                height: 0;
+                                width: 0;
+                                overflow: hidden;
+                                border-style: solid;
+                                border-color: #296523 #296523 transparent transparent;
+                                border-width: 5px 10px;
+                            }
+                            &:after{
+                                content: "Calendar";
+                                font-family: "Quicksand-Bold";
+                                font-size: 17px;
+                                color: #D0E914;
+                                text-transform: uppercase;
+                                text-align: center;
+                                display: block;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                z-index: 2;
+                            }
+                        }
+                    }
+                }
+
+                &.open{
+                    >a{
+                        background-color: transparent;
+                    }
+                }
+
+                >ul.dropdown-menu{
+                    background-color: #FFF;
+
+                    @media (max-width: @screen-xs-max){
+                        border-radius: 0;
+                    }
+
+                    >li{
+                        &.active >a{
+                            color: #fff;
+                            background-color: @brand-primary;
+
+                            &:hover,
+                            &:focus{
+                                color: #fff;
+                                background-color: @brand-primary;
+                            }
+                        }
+                        >a{
+                            color: @gray-dark;
+                            background-color: transparent;
+
+                            &:hover,
+                            &:focus{
+                                color: @brand-primary;
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.logo{
+    display: block;
+    margin: 0;
+    position: absolute;
+
+    @media (min-width: @screen-sm-min){
+        top: 30px;
+        left: 0;
+    }
+
+    @media (max-width: @screen-xs-max) {
+        top: 0;
+        left: 0;
+    }
+
+    &:after{
+        display: none;
+        content: "Our Camps:";
+        position: absolute;
+        left: 110%;
+        top: 30px;
+        text-transform: lowercase;
+        white-space: nowrap;
+        font-family: "Lobster";
+        font-size: 27px;
+        line-height: 27px;
+        color: #121743;
+        font-weight: 400;
+
+        @media (min-width: @screen-sm-min){
+            display: block;
+            top: 0;
+        }
+
+        @media (min-width: @screen-lg-min){
+            top: 30px;
+        }
+    }
+
+    img{
+        @media (max-width: @screen-xs-max) {
+            width: 50px;
+            height: auto;
+        }
+    }
+}

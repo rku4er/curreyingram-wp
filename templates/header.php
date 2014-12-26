@@ -2,19 +2,19 @@
   $logo = '<a href="'. get_bloginfo('url') .'"><img src="'. get_template_directory_uri() .'/assets/img/bg/logo.png" alt="'. get_bloginfo('name') .'"></a>';
 ?>
 
-<header class="navbar navbar-default navbar-static-top" role="banner">
+<header id="header" class="navbar navbar-default navbar-fixed-top" role="banner">
 
   <div class="container">
 
-    <?php if(is_home()): ?>
+    <?php if(is_front_page()): ?>
       <h1 class="logo"><?php echo $logo; ?></h1>
     <?php else: ?>
       <strong class="logo"><?php echo $logo; ?></strong>
     <?php endif; ?>
 
-    <p class="tagline"><?php echo get_bloginfo('description'); ?></p>
-
-    <?php get_search_form(); ?>
+    <?php if(get_bloginfo('description')): ?>
+      <p class="tagline"><?php echo get_bloginfo('description'); ?></p>
+    <?php endif; ?>
 
     <div class="navbar-header">
 

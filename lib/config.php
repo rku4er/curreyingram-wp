@@ -20,6 +20,7 @@ define('GOOGLE_ANALYTICS_ID', $gai);
  */
 $detect = class_exists('Mobile_Detect') ? new Mobile_Detect : null;
 $deviceType = ($detect) ? ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer') : null ;
+define('DEVICE', $deviceType);
 
 /**
  * .main classes
@@ -62,8 +63,9 @@ function roots_display_sidebar() {
      */
     array(
       'is_404',
-      'is_front_page',
-      //array('is_page', array(42, 'page-slug', 'Page Title'))
+      array('is_singular', array('camps')),
+      array('is_post_type_archive', array('camps')),
+      array('is_tax', array('category_camps')),
     ),
     /**
      * Page template checks (via is_page_template())
@@ -71,7 +73,7 @@ function roots_display_sidebar() {
      */
     array(
       'template-home.php',
-      'template-fullwidth.php'
+      'template-fullwidth.php',
     )
   );
 

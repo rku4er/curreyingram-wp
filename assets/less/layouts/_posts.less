@@ -1,0 +1,37 @@
+.post{
+    &+.post{
+        margin-top: 50px;
+    }
+    .thumb{
+        max-width: 100%;
+
+        @media (max-width: @screen-sm-max){
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: @screen-sm-min){
+            float: left;
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+    }
+    .entry-title{
+        font-size: 26px;
+    }
+    .entry-summary{
+        overflow: hidden;
+    }
+    .meta{
+        dt{
+            float: left;
+            clear: left;
+            margin-right: 10px;
+        }
+        dt,
+        dd{
+            line-height: 20px;
+        }
+    }
+}
