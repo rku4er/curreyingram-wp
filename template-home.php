@@ -5,13 +5,14 @@ Template Name: Home
 ?>
 
 <?php
-  $home_slider = function_exists('get_field') ? get_field('slider') : '';
-  $home_bg = function_exists('get_field') ? get_field('home_bg') : '#E7E7E7';
+  $slider = function_exists('get_field') ? get_field('slider') : '';
+  $slider_timeout = function_exists('get_field') ? get_field('slider_timeout') : '5000';
+  $slider_animation = function_exists('get_field') ? get_field('slider_animation') : 'fade';
 ?>
 
-<?php if($home_slider): ?>
-  <section id="home-slider" class="container carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
-    <?php if($home_slider): ?>
+<?php if($slider): ?>
+  <section id="home-slider">
+    <div class="container carousel slide <?php if($slider_animation == 'fade') echo 'carousel-fade'; ?>" data-ride="carousel" data-interval="<?php echo $slider_timeout; ?>">
       <div class="carousel-inner">
         <?php
           while(have_rows('slider')):
@@ -29,11 +30,11 @@ Template Name: Home
           </div>
         <?php endwhile; ?>
       </div>
-    <?php endif; ?>
+    </div>
   </section>
 <?php endif; ?>
 
-<div id="home-content" style="background-color: <?php echo $home_bg; ?>">
+<div id="home-content">
   <div class="container">
 
     <div class="row">
@@ -48,10 +49,14 @@ Template Name: Home
         </div>
 
         <div class="col-sm-4">
-            <?php $testimonials = function_exists('get_field') ? get_field('testimonials') : ''; ?>
+            <?php
+              $testimonials = function_exists('get_field') ? get_field('testimonials') : '';
+              $testimonials_timeout = function_exists('get_field') ? get_field('testimonials_timeout') : '5000';
+              $testimonials_animation = function_exists('get_field') ? get_field('testimonials_animation') : 'fade';
+            ?>
 
             <?php if($testimonials): ?>
-                <section id="testimonials" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
+                <section id="testimonials" class="carousel slide <?php if($testimonials_animation == 'fade') echo 'carousel-fade'; ?>" data-ride="carousel" data-interval="<?php echo $testimonials_timeout; ?>">
                   <h3 class="testimonials-head">What people are saying</h3>
                   <div class="carousel-inner">
                     <?php

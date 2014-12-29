@@ -4,7 +4,7 @@
     overflow: hidden;
 
     @media (min-width: @screen-sm-min){
-        padding-top: @header-height + @layout-offset;
+        padding-top: @header-height;
     }
 
     @media (min-width: @screen-md-min){
@@ -18,14 +18,16 @@
         }
     }
 
-    >.container{
-        position: relative;
-
-        >.content{
-            @media (min-width: @screen-sm-min){
-                min-height: 540px;
-            }
+    .content{
+        @media (min-width: @screen-sm-min){
+            min-height: 557px;
+            margin-top: @layout-offset;
         }
+    }
+
+    .middle-holder{
+        background-color: #fff;
+        padding: 0 @layout-offset;
     }
 }
 
@@ -60,25 +62,40 @@
 }
 
 .tiles{
-    height: 0;
-    position: relative;
+
+    .container{
+        position: relative;
+    }
 
     .tile{
-        background-color: #fff;
-        width: 45.7%;
-        padding-bottom: 45.7%;
+        width: 44.2%;
+        padding-bottom: 44.2%;
         height: 0;
+        font-size: 0;
         position: absolute;
         top: 0;
+        border: solid #fff;
+        border-width: @layout-offset 0;
+        z-index: 2;
 
         &:nth-child(1){
-            margin-left: -45.7%;
-            left: -20px;
+            margin-left: -44.2%;
+            left: 0;
+
+            &:before{
+                right: 100%;
+                border-right-width: @layout-offset/2;
+            }
         }
 
         &:nth-child(2){
-            margin-right: -45.7%;
-            right: -20px;
+            margin-right: -44.2%;
+            right: 0;
+
+            &:before{
+                left: 100%;
+                border-left-width: @layout-offset/2;
+            }
         }
 
         .inner{
@@ -96,6 +113,34 @@
                 width: 100%;
                 height: auto;
             }
+        }
+
+        &:before{
+            content: "";
+            width: 1000%;
+            position: absolute;
+            z-index: -1;
+            background-color: #121744;
+            top: -@layout-offset;
+            bottom: -@layout-offset;
+            border: solid #fff;
+            border-width: @layout-offset 0;
+        }
+    }
+}
+
+body.isChromium{
+
+    .tile{
+        width: 45.3%;
+        padding-bottom: 45.3%;
+
+        &:nth-child(1){
+            margin-left: -45.3%;
+        }
+
+        &:nth-child(2){
+            margin-right: -45.3%;
         }
     }
 }

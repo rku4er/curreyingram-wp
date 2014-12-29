@@ -1,4 +1,4 @@
-<footer class="content-info" role="contentinfo">
+<footer id="footer" class="content-info" role="contentinfo">
 
   <div class="container">
     <div class="widget-columns">

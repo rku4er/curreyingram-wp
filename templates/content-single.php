@@ -15,10 +15,12 @@
       </section>
     <?php endif; ?>
 
-    <footer>
-      <?php get_template_part('templates/entry-meta'); ?>
-      <?php wp_link_pages(array('before' => '<nav class="page-nav"><p>' . __('Pages:', 'roots'), 'after' => '</p></nav>')); ?>
-    </footer>
+    <?php if( get_post_type($post) != 'camps' ): ?>
+      <footer>
+        <?php get_template_part('templates/entry-meta'); ?>
+        <?php wp_link_pages(array('before' => '<nav class="page-nav"><p>' . __('Pages:', 'roots'), 'after' => '</p></nav>')); ?>
+      </footer>
+    <?php endif; ?>
 
     <section class="comment-wrapper">
       <?php comments_template('/templates/comments.php'); ?>

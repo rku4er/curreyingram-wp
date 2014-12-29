@@ -117,6 +117,7 @@ function promo_tiles_func($atts, $content = null){
     $promo_right_url = get_field('promo_right_url', 'options') ? get_field('promo_right_url', 'options') : '';
 
     $output .= '<div class="tiles">';
+    $output .= '<div class="container">';
 
     $output .= '<div class="tile visible-lg-block">';
     $output .= '<div class="inner">';
@@ -131,8 +132,52 @@ function promo_tiles_func($atts, $content = null){
     $output .= '</div>';
 
     $output .= '</div>';
+    $output .= '</div>';
   }
 
   return $output;
 
+}
+
+
+/**
+ * Custom camps excerpt
+ */
+function excerpt_camps($_id, $limit = 65, $more = 'More', $less = 'Less', $stripImages = false) {
+
+  $postObject = get_post($_id);
+  $content = $postObject->post_content;
+  $content = preg_replace('/\s?\r/', '', $content);
+  $content = explode("\n", $content);
+  $first_p = array_slice($content, 0, 1);
+  $first_p = explode(" ", $content[0], $limit);
+
+
+  if (count($first_p) >= $limit) {
+
+    $extra = array_pop($first_p);
+    $first_p = implode(" ", $first_p);
+    $first_p .= ' <a href="#camp-' . $_id . '" class="expand-more collapsed">' . __($more, 'roots') . '</a> <span class="extra-text">'. $extra .'</span>';
+
+  } else {
+
+    $first_p = implode(" ", $first_p);
+    $first_p .= ' <a href="#collapse-' . $_id . '" class="expand-more collapsed">' . __($more, 'roots') . '</a>';
+  }
+
+  array_shift($content);
+  array_unshift($content, $first_p);
+  $content = implode("\r \n", $content);
+
+  if($stripImages == true) {
+
+    $content = preg_replace('/(?:<a.*?>)?(?:<img.*?>)(?:<\/a>)?/','', $content);
+
+  }
+
+  $content = apply_filters('the_content', $content);
+  $content = str_replace(']]>', ']]&gt;', $content);
+  $content .= '<p><a href="#camp-' . $_id . '" class="expand-less">' . __($less, 'roots') . '</a></p>';
+
+  return $content;
 }

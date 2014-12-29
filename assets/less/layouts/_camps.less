@@ -1,0 +1,59 @@
+.camps-cat-title{
+    margin-bottom: 20px;
+}
+
+.camps{
+    &+.camps{
+        margin-top: 20px;
+    }
+
+    h2.entry-title,
+    .entry-meta{
+        font-family: "ShadowsIntoLight";
+        font-size: 21px;
+        line-height: 21px;
+        font-weight: 400;
+    }
+
+    h2.entry-title{
+        margin: 0 10px 0 0;
+        color: #0E280C;
+
+        >a{
+            color: #0E280C;
+
+            &:hover,
+            &:focus{
+                color: @brand-primary;
+            }
+        }
+    }
+
+    .entry-meta{
+        color: @brand-primary;
+    }
+
+    .entry-summary{
+        margin-top: 10px;
+    }
+
+    a.expand-more{
+        display: none;
+
+        &.collapsed{
+            display: inline;
+        }
+    }
+
+    span.extra-text{
+        display: none;
+
+        &.collapsed{
+            display: inline;
+        }
+    }
+
+    p.hide-next ~ p{
+        display: none;
+    }
+}

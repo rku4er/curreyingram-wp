@@ -25,6 +25,62 @@
         // JavaScript to be fired on all pages
         //$(element).columnize({ columns: 2, buildOnce: false });
 
+        // camps with expand/collapse
+        $('article.camps').each(function(){
+          var more = $(this).find('a.expand-more');
+          var less = $(this).find('a.expand-less');
+          var extra = $(this).find('span.extra-text');
+          var first_p = $(this).find('p:first');
+
+          if(more.hasClass('collapsed')){
+            first_p.addClass('hide-next');
+          }
+
+          function do_stuff(){
+            more.toggleClass('collapsed');
+            extra.toggleClass('collapsed');
+            first_p.toggleClass('hide-next');
+          }
+
+          $(more).on('click', function(e){
+
+            do_stuff();
+            e.preventDefault();
+
+          });
+
+          $(less).on('click', function(e){
+
+            do_stuff();
+            e.preventDefault();
+
+          });
+
+        });
+
+        // Content Autoheight
+        function setHeight(){
+          $('.middle-holder').css({
+            'min-height' : document.documentElement.clientHeight - $('#header').outerHeight() - $('#footer').outerHeight()
+          });
+        }
+
+        setHeight();
+
+        var resizeTimer;
+
+        $(window).resize(function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(setHeight, 100);
+        });
+
+
+        var isChromium = !!window.chrome;
+
+        if(isChromium){
+          $('body').addClass('isChromium');
+        }
+
       }
     },
     // Home page

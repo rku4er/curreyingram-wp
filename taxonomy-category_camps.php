@@ -2,7 +2,7 @@
   $current_tax_slug = $wp_query->query_vars['category_camps'];
   $tax_obj = get_term_by('slug', $current_tax_slug, 'category_camps');
 
-  echo '<h1>' . $tax_obj->name . ' Camps</h1>'
+  echo '<h1 class="camps-cat-title">' . $tax_obj->name . ' Camps</h1>'
 ?>
 
 <?php if (!have_posts()) : ?>

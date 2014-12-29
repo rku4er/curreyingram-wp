@@ -1,4 +1,5 @@
 <?php get_template_part('templates/head'); ?>
+
 <body <?php body_class(); ?>>
 
   <!--[if lt IE 8]>
@@ -7,7 +8,9 @@
     </div>
   <![endif]-->
 
-  <div class="wrap">
+  <?php $page_bg = function_exists('get_field') ? get_field('page_bg', 'options') : '#E7E7E7'; ?>
+
+  <div class="wrap" style="background-color: <?php echo $page_bg; ?>">
 
     <?php
       do_action('get_header');
@@ -16,19 +19,15 @@
 
     <?php if(is_page_template('template-home.php')): ?>
 
-      <div class="container">
-
-        <?php echo do_shortcode('[promo_tiles]'); ?>
-
-      </div>
+      <?php echo do_shortcode('[promo_tiles]'); ?>
 
       <?php include roots_template_path(); ?>
 
     <?php else: ?>
 
-      <div class="container">
+      <?php echo do_shortcode('[promo_tiles]'); ?>
 
-        <?php echo do_shortcode('[promo_tiles]'); ?>
+      <div class="middle-holder container">
 
         <div class="content row" role="document">
           <main class="main <?php echo roots_main_class(); ?>" role="main">
@@ -46,7 +45,7 @@
           <?php endif; ?>
         </div><!-- /.content -->
 
-      </div><!-- /.container -->
+      </div>
 
     <?php endif; ?>
 

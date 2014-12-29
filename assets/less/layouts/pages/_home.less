@@ -1,8 +1,9 @@
 #home-slider{
-    margin-bottom: 30px;
+    padding: @layout-offset 0;
+    background-color: #fff;
 
-    @media (max-width: @screen-xs-max){
-        margin-top: 40px;
+    .container{
+        padding: 0 @layout-offset/2;
     }
 
     .item{
@@ -15,6 +16,10 @@
 
 #home-content{
     padding: 30px 0 50px;
+
+    .container{
+        padding: 0 @layout-offset/2;
+    }
 
     .hentry{
         .entry-content{
@@ -29,6 +34,10 @@
     color: #fff;
     z-index: 2;
     margin-top: 80px;
+
+    @media (max-width: @screen-xs-max){
+        margin-top: 130px;
+    }
 
     &:before,
     &:after{
